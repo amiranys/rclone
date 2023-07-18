@@ -42,6 +42,22 @@ func Initialize() {
 	accounting.Start(ctx)
 }
 
+func InitializeWithCustomConfigPath(path string) {
+	// A subset of initialisation copied from cmd.go
+	// Note that we don't want to pull in anything which depends on pflags
+
+	ctx := context.Background()
+
+	// Start the logger
+	log.InitLogging()
+
+	// Load the config from path
+	configfile.InstallWithCustomConfigPath(path)
+
+	// Start accounting
+	accounting.Start(ctx)
+}
+
 // Finalize finalizes the library
 func Finalize() {
 	// TODO: how to clean up? what happens when rcserver terminates?

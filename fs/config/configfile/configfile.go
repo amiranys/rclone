@@ -20,6 +20,12 @@ func Install() {
 	config.SetData(&Storage{})
 }
 
+// Install installs the custom config file handler
+func InstallWithCustomConfigPath(path string) {
+	config.SetConfigPath(path)
+	config.SetData(&Storage{})
+}
+
 // Storage implements config.Storage for saving and loading config
 // data in a simple INI based file.
 type Storage struct {
